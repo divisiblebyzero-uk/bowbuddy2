@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { RoundsComponent } from './components/rounds/rounds.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { RoundDetailsComponent } from './components/round-details/round-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RoundDetailsComponent } from './components/round-details/round-details.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

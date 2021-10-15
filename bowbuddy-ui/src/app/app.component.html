@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" routerLink="">Bow Buddy</a>
+
+        <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+            &#9776;
+        </button>
+
+        <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="nav-item " routerLinkActive="active">
+                    <a routerLink="rounds" class="nav-link">Rounds</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <router-outlet></router-outlet>
+</div>

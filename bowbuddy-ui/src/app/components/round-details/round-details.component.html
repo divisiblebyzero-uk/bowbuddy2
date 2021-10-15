@@ -8,3 +8,10 @@
 <div>
     {{ round.venue }}
 </div>
+
+<table>
+    <tr *ngFor="let handicap of handicapTable | keyvalue">
+        <td>{{handicap.key}}</td>
+        <td>{{handicap.value}}</td>
+    </tr>
+</table>
