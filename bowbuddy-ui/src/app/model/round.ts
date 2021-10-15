@@ -44,7 +44,7 @@ export class Measurement {
     ) {
         this.value = value;
         this.units = units;
-        this.displayString = '${value} ${units}';
+        this.displayString = `${value} ${units}`;
     }
 
     public inMetres(): number {

@@ -1,17 +1,24 @@
-<p>round-details works!</p>
-<div>
-    {{ round.name }}
-</div>
-<div>
-    {{ round.scoringType }}
-</div>
-<div>
-    {{ round.venue }}
-</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="mx-auto text-center">
+            <h1 class="mb-3">{{ round.name }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 my-3">
+            <div>
+                {{ round.scoringType }}
+            </div>
+            <div>
+                {{ round.venue }}
+            </div>
+            <div *ngFor="let distance of round.distances">
+                {{ distance.arrows }} x {{ distance.length.displayString }} ({{ distance.faceSize.displayString }} face)
+            </div>
+        </div>
 
-<table>
-    <tr *ngFor="let handicap of handicapTable | keyvalue">
-        <td>{{handicap.key}}</td>
-        <td>{{handicap.value}}</td>
-    </tr>
-</table>
+        <div class="col-md-6 my-3">
+            <app-round-handicap-chart></app-round-handicap-chart>
+        </div>
+    </div>
+</div>
