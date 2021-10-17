@@ -10,6 +10,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ChartsModule } from 'ng2-charts';
 import { RoundHandicapChartComponent } from './components/round-handicap-chart/round-handicap-chart.component';
+import { ScoreCardSelectorComponent } from './components/score-card-selector/score-card-selector.component';
+import { ScoreCardDisplayComponent } from './components/score-card-display/score-card-display.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { RoundHandicapChartComponent } from './components/round-handicap-chart/r
     RoundsComponent,
     WelcomeComponent,
     RoundDetailsComponent,
-    RoundHandicapChartComponent
+    RoundHandicapChartComponent,
+    ScoreCardSelectorComponent,
+    ScoreCardDisplayComponent
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,7 @@ import { Distance, Round } from '../model/round';
 @Injectable({
   providedIn: 'root'
 })
-export class HandicapCalculationServiceService {
+export class HandicapCalculationService {
 
   private handicapTables: Map<string, Map<number, number>> = new Map<string, Map<number, number>>();
 

@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 border">Archer: {{scorecard.archer}}</div>
+        <div class="col-12 col-md-6 border">Date: {{scorecard.date | date:'dd/MM/yyyy'}}</div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 border">Round: {{scorecard.round}}</div>
+        <div class="col-12 col-md-6 border">Bow: {{scorecard.bowType}}</div>
+    </div>
+    <div class="row">
+        <div class="col-2 col-md-2 border bg-light"></div>
+        <div class="col-1 col-md-1 border">ET</div>
+        <div class="col-2 col-md-2 border bg-light"></div>
+        <div class="col-1 col-md-1 border">ET</div>
+        <div class="col-1 col-md-1 border"></div>
+        <div class="col-1 col-md-1 border">H</div>
+        <div class="col-1 col-md-1 border">S</div>
+        <div class="col-1 col-md-1 border">G</div>
+        <div class="col-1 col-md-1 border">Xs</div>
+        <div class="col-1 col-md-1 border">RT</div>
+    </div>
+    <div *ngFor="let distanceTotal of scorecard.distanceTotals">
+        <div class="row" *ngFor="let dozen of distanceTotal.dozens">
+            <div class="col-2 col-md-2 border">{{dozen.ends[0].scores}}</div>
+            <div class="col-1 col-md-1 border">{{dozen.ends[0].endTotal}}</div>
+            <div class="col-2 col-md-2 border">{{dozen.ends[1].scores}}</div>
+            <div class="col-1 col-md-1 border">{{dozen.ends[1].endTotal}}</div>
+            <div class="col-1 col-md-1 border"></div>
+            <div class="col-1 col-md-1 border">{{dozen.hits}}</div>
+            <div class="col-1 col-md-1 border">{{dozen.score}}</div>
+            <div class="col-1 col-md-1 border">{{dozen.golds}}</div>
+            <div class="col-1 col-md-1 border">{{dozen.xes}}</div>
+            <div class="col-1 col-md-1 border">{{dozen.runningTotal}}</div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-6 border">Distance Totals for {{ distanceTotal.distance.displayString }}</div>
+            <div class="col-1 col-md-1 border"></div>
+            <div class="col-1 col-md-1 border">{{distanceTotal.hits}}</div>
+            <div class="col-1 col-md-1 border">{{distanceTotal.score}}</div>
+            <div class="col-1 col-md-1 border">{{distanceTotal.golds}}</div>
+            <div class="col-1 col-md-1 border">{{distanceTotal.xes}}</div>
+            <div class="col-1 col-md-1 border bg-light"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 col-md-6 border">Round Totals</div>
+        <div class="col-1 col-md-1 border"></div>
+        <div class="col-1 col-md-1 border">{{scorecard.hits}}</div>
+        <div class="col-1 col-md-1 border">{{scorecard.score}}</div>
+        <div class="col-1 col-md-1 border">{{scorecard.golds}}</div>
+        <div class="col-1 col-md-1 border">{{scorecard.xes}}</div>
+        <div class="col-1 col-md-1 border bg-light"></div>
+    </div>
+</div>
+
+<button type="button" class="btn btn-primary" (click)="recalculate()">Recalculate!!</button>

@@ -1,10 +1,23 @@
-<div class="container-fluid">
+<div class="container">
     <div class="row">
         <div class="mx-auto text-center">
             <h1 class="mb-3">Archery rounds</h1>
         </div>
     </div>
     <div class="row">
+        <div class="card-deck">
+            <div class="col-sm-6 col-lg-3 mb-3" *ngFor="let round of rounds">
+                <div class="card mb-3 h-100" (click)="showDetails(round)">
+                    <img src="assets/target.png" class="img-fluid card-img-top h-127" />
+                    <div class="card-body">
+                        <h4 class="card-title">{{round.name}}</h4>
+                        <p class="card-text">{{round.venue}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--div class="row">
         <div class="col-sm-4 my-3" *ngFor="let round of rounds">
             <div class="card h-100" (click)="showDetails(round)">
                 <img src="assets/target.png" class="img-fluid card-img-top" />
@@ -14,5 +27,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div-->
 </div>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Round, ROUNDS } from 'src/app/model/round';
-import { HandicapCalculationServiceService } from 'src/app/service/handicap-calculation-service.service';
 
 
 @Component({
@@ -12,16 +11,14 @@ import { HandicapCalculationServiceService } from 'src/app/service/handicap-calc
 export class RoundDetailsComponent implements OnInit {
 
   round!: Round;
-  handicapTable!: Map<number, number>;
 
-  constructor(private route: ActivatedRoute, private hcs: HandicapCalculationServiceService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const round = ROUNDS.find(r => r.name == params['name']);
       if (round) {
         this.round = round;
-        this.handicapTable = this.hcs.getHandicapTable(round);
       }
     })
   }

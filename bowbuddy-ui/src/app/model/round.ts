@@ -66,11 +66,10 @@ export class Measurement {
 export const ROUNDS: Round[] = [
     new Round('Portsmouth', 'Indoor', 'Metric', [new Distance(new Measurement(20, 'yd'), 60, new Measurement(60, 'cm'))]),
     new Round('Frostbite', 'Outdoor', 'Metric', [new Distance(new Measurement(30, 'm'), 36, new Measurement(80, 'cm'))]),
+    new Round('New National', 'Outdoor', 'Imperial', [new Distance(new Measurement(100, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(80, 'yd'), 24, new Measurement(122, 'cm'))]),
+    new Round('Long National', 'Outdoor', 'Imperial', [new Distance(new Measurement(80, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(60, 'yd'), 24, new Measurement(122, 'cm'))]),
     new Round('National', 'Outdoor', 'Imperial', [new Distance(new Measurement(60, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(50, 'yd'), 24, new Measurement(122, 'cm'))]),
     new Round('Short National', 'Outdoor', 'Imperial', [new Distance(new Measurement(50, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(40, 'yd'), 24, new Measurement(122, 'cm'))]),
-    new Round('Short National', 'Outdoor', 'Imperial', [new Distance(new Measurement(50, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(40, 'yd'), 24, new Measurement(122, 'cm'))]),
-    new Round('Short National', 'Outdoor', 'Imperial', [new Distance(new Measurement(50, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(40, 'yd'), 24, new Measurement(122, 'cm'))]),
-    new Round('Short National', 'Outdoor', 'Imperial', [new Distance(new Measurement(50, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(40, 'yd'), 24, new Measurement(122, 'cm'))]),
-    new Round('Short National', 'Outdoor', 'Imperial', [new Distance(new Measurement(50, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(40, 'yd'), 24, new Measurement(122, 'cm'))]),
-    
+    new Round('Junior National', 'Outdoor', 'Imperial', [new Distance(new Measurement(40, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(30, 'yd'), 24, new Measurement(122, 'cm'))]),
+    new Round('Short Junior National', 'Outdoor', 'Imperial', [new Distance(new Measurement(30, 'yd'), 48, new Measurement(122, 'cm')), new Distance(new Measurement(20, 'yd'), 24, new Measurement(122, 'cm'))]),
 ];

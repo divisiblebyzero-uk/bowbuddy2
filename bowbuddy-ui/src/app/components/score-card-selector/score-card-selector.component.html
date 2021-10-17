@@ -1,0 +1,9 @@
+<p>score-card-selector works!</p>
+
+<ul>
+    <li *ngFor="let scorecard of scorecards">
+        <a (click)="showScorecardDetails(scorecard)">{{ scorecard.id }}</a>
+    </li>
+</ul>
+
+<button type="button" class="btn btn-primary" (click)="addFakePortsmouth()">Add Fake Portsmouth</button>

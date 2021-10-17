@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { Round, ROUNDS } from 'src/app/model/round';
-import { HandicapCalculationServiceService } from 'src/app/service/handicap-calculation-service.service';
+import { HandicapCalculationService } from 'src/app/service/handicap-calculation-service.service';
 
 @Component({
   selector: 'app-round-handicap-chart',
@@ -16,7 +16,7 @@ export class RoundHandicapChartComponent implements OnInit {
   round!: Round;
   handicapTable!: Map<number, number>;
 
-  constructor(private route: ActivatedRoute, private hcs: HandicapCalculationServiceService) { }
+  constructor(private route: ActivatedRoute, private hcs: HandicapCalculationService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
