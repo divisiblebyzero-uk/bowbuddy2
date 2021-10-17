@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ScoreCard, SCORECARDS } from 'src/app/model/scorecard';
 import { ScoreCalculationService } from 'src/app/service/score-calculation.service';
 
@@ -12,7 +12,7 @@ export class ScoreCardDisplayComponent implements OnInit {
 
   public scorecard!: ScoreCard;
 
-  constructor(private route: ActivatedRoute, private scs: ScoreCalculationService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private scs: ScoreCalculationService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -21,6 +21,8 @@ export class ScoreCardDisplayComponent implements OnInit {
       if (scorecard) {
         this.scorecard = scorecard;
         this.recalculate();
+      } else {
+        this.router.navigate(['/scorecards']);
       }
     })
   }

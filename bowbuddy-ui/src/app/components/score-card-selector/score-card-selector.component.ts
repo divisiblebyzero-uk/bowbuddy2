@@ -23,7 +23,12 @@ export class ScoreCardSelectorComponent implements OnInit {
   }
 
   public addFakePortsmouth() {
-    this.fds.createScoreCards();
+    this.fds.createScoreCard('Portsmouth');
+    console.log(SCORECARDS);
+  }
+
+  public addFakeNational() {
+    this.fds.createScoreCard('National');
     console.log(SCORECARDS);
   }
 
