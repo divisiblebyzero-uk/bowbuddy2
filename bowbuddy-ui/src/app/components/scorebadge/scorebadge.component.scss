@@ -1,0 +1,38 @@
+.archery-circle-gold {
+    background: #FF0;
+}
+
+.archery-circle-red {
+    background: #F00;
+}
+
+.archery-circle-blue {
+    background: #0004FF;
+    color: #fff;
+}
+
+.archery-circle-black {
+    background: #000;
+    color: #fff;
+}
+
+.archery-circle-white {
+    background: #FFF;
+    color: #000;
+}
+
+.archery-circle-miss {
+    background: #0F0;
+}
+
+.archery-circle-unknown {
+    background: #FF69B4;
+}
+
+.archery-circle {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    font-weight: bold;
+}

@@ -12,6 +12,7 @@ import { ChartsModule } from 'ng2-charts';
 import { RoundHandicapChartComponent } from './components/round-handicap-chart/round-handicap-chart.component';
 import { ScoreCardSelectorComponent } from './components/score-card-selector/score-card-selector.component';
 import { ScoreCardDisplayComponent } from './components/score-card-display/score-card-display.component';
+import { ScorebadgeComponent } from './components/scorebadge/scorebadge.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ScoreCardDisplayComponent } from './components/score-card-display/score
     RoundDetailsComponent,
     RoundHandicapChartComponent,
     ScoreCardSelectorComponent,
-    ScoreCardDisplayComponent
+    ScoreCardDisplayComponent,
+    ScorebadgeComponent
   ],
   imports: [
     BrowserModule,

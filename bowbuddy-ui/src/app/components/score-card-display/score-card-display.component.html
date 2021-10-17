@@ -21,9 +21,13 @@
     </div>
     <div *ngFor="let distanceTotal of scorecard.distanceTotals">
         <div class="row" *ngFor="let dozen of distanceTotal.dozens">
-            <div class="col-2 col-md-2 border">{{dozen.ends[0].scores}}</div>
+            <div class="col-2 col-md-2 border">
+                <app-scorebadge *ngFor="let score of dozen.ends[0].scores" [score]="score"></app-scorebadge>
+            </div>
             <div class="col-1 col-md-1 border">{{dozen.ends[0].endTotal}}</div>
-            <div class="col-2 col-md-2 border">{{dozen.ends[1].scores}}</div>
+            <div class="col-2 col-md-2 border">
+                <app-scorebadge *ngFor="let score of dozen.ends[1].scores" [score]="score"></app-scorebadge>
+            </div>
             <div class="col-1 col-md-1 border">{{dozen.ends[1].endTotal}}</div>
             <div class="col-1 col-md-1 border"></div>
             <div class="col-1 col-md-1 border">{{dozen.hits}}</div>
@@ -52,5 +56,3 @@
         <div class="col-1 col-md-1 border bg-light"></div>
     </div>
 </div>
-
-<button type="button" class="btn btn-primary" (click)="recalculate()">Recalculate!!</button>
