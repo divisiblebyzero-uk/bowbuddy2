@@ -1,31 +1,21 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="mx-auto text-center">
+        <div class="py-2 mx-auto text-center">
             <h1 class="mb-3">Archery rounds</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="card-deck">
-            <div class="col-sm-6 col-lg-3 mb-3" *ngFor="let round of rounds">
-                <div class="card mb-3 h-100" (click)="showDetails(round)">
-                    <img src="assets/target.png" class="img-fluid card-img-top h-127" />
-                    <div class="card-body">
-                        <h4 class="card-title">{{round.name}}</h4>
-                        <p class="card-text">{{round.venue}}</p>
-                    </div>
+    <div class="row no-gutters">
+        <div class="col-4 col-lg-1" *ngFor="let round of rounds">
+            <div class="mx-1 my-1 px-0 py-1 my-1 card" (click)="showDetails(round)">
+                <div class="mx-0 px-0 my-0 py-0 card-body text-center">
+                    <h6 class="card-title">{{round.name}}</h6>
+                    <p class="card-text">{{round.venue}}</p>
+                    <p class="card-text">{{round.scoringType}}</p>
                 </div>
             </div>
         </div>
     </div>
-    <!--div class="row">
-        <div class="col-sm-4 my-3" *ngFor="let round of rounds">
-            <div class="card h-100" (click)="showDetails(round)">
-                <img src="assets/target.png" class="img-fluid card-img-top" />
-                <div class="card-body">
-                    <h4 class="card-title">{{round.name}}</h4>
-                    <p class="card-text">{{round.venue}}</p>
-                </div>
-            </div>
-        </div>
-    </div-->
 </div>
+
+{{width}} x {{height}}
+

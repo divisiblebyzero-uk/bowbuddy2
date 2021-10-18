@@ -10,10 +10,14 @@ import { ROUNDS, Round } from 'src/app/model/round';
 export class RoundsComponent implements OnInit {
 
   rounds: Round[] = ROUNDS;
+  height!: number;
+  width!: number;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.height = window.innerHeight;
+    this.width = window.innerWidth;
   }
 
   showDetails(round: Round): void {
