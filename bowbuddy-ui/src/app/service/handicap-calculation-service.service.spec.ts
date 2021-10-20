@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { HandicapCalculationServiceService } from './handicap-calculation-service.service';
+import { HandicapCalculationService } from './handicap-calculation-service.service';
 
 describe('HandicapCalculationServiceService', () => {
-  let service: HandicapCalculationServiceService;
+  let service: HandicapCalculationService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(HandicapCalculationServiceService);
+    service = TestBed.inject(HandicapCalculationService);
   });
 
   it('should be created', () => {

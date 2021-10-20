@@ -12,7 +12,13 @@ export class HandicapCalculationService {
   constructor() { }
 
   public getHandicapForScore(round: Round, score: number): number {
-    return 0;
+    const handicapTable = this.getHandicapTable(round);
+    for (let i = 0; i < 101; i++) {
+      if (handicapTable.has(i) && handicapTable.get(i)! <= score) {
+        return i;
+      }
+    }
+    return 100;
   }
 
   public getHandicapTable(round: Round): Map<number, number> {

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+import { ROUNDS } from '../model/round';
 import { ScoreCard } from '../model/scorecard';
+import { HandicapCalculationService } from './handicap-calculation-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScoreCalculationService {
 
-  constructor() { }
+  constructor(private hcs: HandicapCalculationService) { }
 
   private convertScoreToNumber(input: string): number {
     if (input == 'M') {
@@ -61,6 +63,12 @@ export class ScoreCalculationService {
       card.hits = card.hits?card.hits+dt.hits:dt.hits;
       card.score = card.score?card.score+dt.score:dt.score;
       card.xes = card.xes?card.xes+dt.xes:dt.xes;
+
+      const round = ROUNDS.find(r => r.name == card.round);
+
+      if (round) {
+        card.handicap = this.hcs.getHandicapForScore(round, card.score);
+      }
       
     });
   }

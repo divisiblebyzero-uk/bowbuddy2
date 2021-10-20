@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Round, ROUNDS } from 'src/app/model/round';
 import { ScoreCard, SCORECARDS } from 'src/app/model/scorecard';
 import { ScoreCalculationService } from 'src/app/service/score-calculation.service';
 
@@ -13,6 +14,7 @@ export class ScoreCardDisplayComponent implements OnInit {
   public scorecard!: ScoreCard;
   public innerWidth!: number;
   public showThinnerCard: boolean = false;
+  public showXes: boolean = true;
 
   constructor(private route: ActivatedRoute, private router: Router, private scs: ScoreCalculationService) { }
 
@@ -41,6 +43,11 @@ export class ScoreCardDisplayComponent implements OnInit {
 
   public recalculate() {
     this.scs.calculate(this.scorecard);
+    const round = ROUNDS.find(r => r.name == this.scorecard.round);
+    if (round) {
+      this.showXes = round.venue == 'Outdoor' && round.scoringType == 'Metric';
+    }
+    
   }
 
 }

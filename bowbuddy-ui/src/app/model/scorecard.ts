@@ -12,7 +12,8 @@ export interface ScoreCard {
     score?: number,
     hits?: number,
     golds?: number,
-    xes?: number
+    xes?: number,
+    handicap?: number
 }
 
 export interface DistanceTotal {

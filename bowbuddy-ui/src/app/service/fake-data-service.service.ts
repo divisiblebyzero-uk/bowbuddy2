@@ -75,7 +75,7 @@ export class FakeDataService {
         ageGroup: 'Adult', 
         gender: 'Male', 
         date: new Date(), 
-        round: 'Portsmouth', 
+        round: round.name, 
         distanceTotals: distanceTotals
       }
       this.scs.calculate(scoreCard);

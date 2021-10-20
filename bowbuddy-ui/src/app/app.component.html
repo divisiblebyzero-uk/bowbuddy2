@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <nav class="navbar fixed-bottom navbar-expand bg-dark navbar-dark" [ngClass]="{'fixed-bottom': isMobilePortrait}">
         <a class="navbar-brand" routerLink="">Bow Buddy</a>
 
         <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
