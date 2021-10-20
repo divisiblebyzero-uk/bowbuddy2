@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ScoreCard, SCORECARDS } from 'src/app/model/scorecard';
 import { ScoreCalculationService } from 'src/app/service/score-calculation.service';
@@ -11,6 +11,8 @@ import { ScoreCalculationService } from 'src/app/service/score-calculation.servi
 export class ScoreCardDisplayComponent implements OnInit {
 
   public scorecard!: ScoreCard;
+  public innerWidth!: number;
+  public showThinnerCard: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private scs: ScoreCalculationService) { }
 
@@ -24,7 +26,17 @@ export class ScoreCardDisplayComponent implements OnInit {
       } else {
         this.router.navigate(['/scorecards']);
       }
-    })
+    });
+    this.calcWidth();
+  }
+
+  @HostListener('window:resize', ['$event']) onResize(event: any) {
+    this.calcWidth();
+  }
+
+  private calcWidth() {
+    this.innerWidth = window.innerWidth;
+    this.showThinnerCard = this.innerWidth < 684;
   }
 
   public recalculate() {

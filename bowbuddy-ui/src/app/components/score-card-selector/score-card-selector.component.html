@@ -6,5 +6,8 @@
     </li>
 </ul>
 
-<button type="button" class="btn btn-primary" (click)="addFakePortsmouth()">Add Fake Portsmouth</button>
-<button type="button" class="btn btn-primary" (click)="addFakeNational()">Add Fake National</button>
+Add a fake round: 
+<select #roundSelector (change)="addFakeRound(roundSelector.value)">
+    <option selected>choose a round</option>
+    <option *ngFor="let round of rounds" [value]="round">{{round}}</option>
+</select>
