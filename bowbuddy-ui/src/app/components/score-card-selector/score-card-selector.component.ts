@@ -13,14 +13,21 @@ export class ScoreCardSelectorComponent implements OnInit {
 
   public scorecards!: ScoreCard[];
 
+  public scorecardsByDate: Map<string, ScoreCard[]> = new Map<string, ScoreCard[]>();
+  public scorecardDates!: IterableIterator<string>;
+
   public rounds!: string[];
 
   constructor(private router: Router, private fds: FakeDataService) { }
 
+  public getDate(input: string): Date {
+    return new Date(input);
+  }
+
   ngOnInit(): void {
-    this.scorecards = SCORECARDS;
     this.rounds = ROUNDS.map(r => {return r.name});
-    if (this.scorecards.length < 2) {
+
+    if (SCORECARDS.length < 2) {
       const date = new Date();
       for (let i = 0; i < 10; i++) {
         const roundName = this.rounds[Math.floor(Math.random()*this.rounds.length)];
@@ -28,6 +35,29 @@ export class ScoreCardSelectorComponent implements OnInit {
         this.fds.createScoreCard(roundName, new Date(date));
       }
     }
+
+
+    this.scorecards = [...SCORECARDS].sort((a,b) => { return b.date.getDate() - a.date.getDate() });
+
+    this.scorecards.forEach(s => {
+      const specimenDate = s.date.toDateString();
+      let scorecardList: ScoreCard[];
+      if (!this.scorecardsByDate.has(specimenDate)) {
+        scorecardList = [];
+        this.scorecardsByDate.set(specimenDate, scorecardList);
+      } else {
+        const potential = this.scorecardsByDate.get(specimenDate);
+        if (potential) {
+          scorecardList = potential;
+        } else {
+          scorecardList = [];
+        }
+      }
+
+      scorecardList.push(s);
+    });
+
+    this.scorecardDates = this.scorecardsByDate.keys();
   }
 
   public showScorecardDetails(scorecard: ScoreCard) {
