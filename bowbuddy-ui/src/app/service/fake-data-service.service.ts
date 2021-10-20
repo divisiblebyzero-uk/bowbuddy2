@@ -45,7 +45,7 @@ export class FakeDataService {
   }
 
 
-  public createScoreCard(roundName: string) {
+  public createScoreCard(roundName: string, date: Date = new Date()) {
     const round = ROUNDS.find(r => r.name == roundName);
     if (round) {
 
@@ -74,7 +74,7 @@ export class FakeDataService {
         bowType: 'Recurve', 
         ageGroup: 'Adult', 
         gender: 'Male', 
-        date: new Date(), 
+        date: date, 
         round: round.name, 
         distanceTotals: distanceTotals
       }

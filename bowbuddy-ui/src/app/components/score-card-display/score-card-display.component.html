@@ -22,8 +22,8 @@
                     <ng-container *ngFor="let dozen of distanceTotal.dozens">
                         <tr>
                             <th class="table-primary" scope="col">
-                                <span class="badge badge-primary">Hits: {{dozen.hits}}</span>&nbsp;
                                 <span class="badge badge-primary">Score: {{dozen.score}}</span>&nbsp;
+                                <span class="badge badge-primary">Hits: {{dozen.hits}}</span>&nbsp;
                                 <span class="badge badge-primary">Golds: {{dozen.golds}}</span>&nbsp;
                                 <ng-container *ngIf="showXes"><span class="badge badge-primary">Xs: {{dozen.xes}}</span>&nbsp;</ng-container>
                                 <span class="badge badge-primary">RT: {{dozen.runningTotal}}</span>
@@ -53,8 +53,8 @@
                     </ng-container>
                     <tr>
                         <th class="table-warning" scope="row" colspan="1">
-                            <span class="badge badge-warning">Hits: {{distanceTotal.hits}}</span>&nbsp;
                             <span class="badge badge-warning">Score: {{distanceTotal.score}}</span>&nbsp;
+                            <span class="badge badge-warning">Hits: {{distanceTotal.hits}}</span>&nbsp;
                             <span class="badge badge-warning">Golds: {{distanceTotal.golds}}</span>&nbsp;
                             <span *ngIf="showXes" class="badge badge-warning">Xs: {{distanceTotal.xes}}</span>&nbsp;
                         </th>
@@ -70,8 +70,8 @@
                 </ng-container>
                 <tr>
                     <th class="table-success" scope="row" colspan="1">
-                        <span class="badge badge-success">Hits: {{scorecard.hits}}</span>&nbsp;
                         <span class="badge badge-success">Score: {{scorecard.score}}</span>&nbsp;
+                        <span class="badge badge-success">Hits: {{scorecard.hits}}</span>&nbsp;
                         <span class="badge badge-success">Golds: {{scorecard.golds}}</span>&nbsp;
                         <span *ngIf="showXes" class="badge badge-success">Xs: {{scorecard.xes}}</span>&nbsp;
                     </th>

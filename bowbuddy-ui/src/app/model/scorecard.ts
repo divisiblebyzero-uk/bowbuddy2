@@ -39,56 +39,6 @@ export interface End {
     endTotal?: number
 }
 
-const scoreCards: ScoreCard[] = [
-
-];
-
-
-
 export const SCORECARDS: ScoreCard[] = [
-    { 
-        id: '1', 
-        archer: 'Joe Bloggs',
-        bowType: 'Recurve', 
-        ageGroup: 'Adult', 
-        gender: 'Male', 
-        date: new Date(), 
-        round: 'Portsmouth', 
-        distanceTotals: [{
-            distance: new Measurement(50, 'yd'),
-            dozens: [
-                {
-                    ends: [
-                        {scores: ['10', '10', '9', '9', '9', '9']},
-                        {scores: ['9', '9', '9', '9', '9', 'M']},
-                    ]
-                },
-                {
-                    ends: [
-                        {scores: ['9', '9', '9', '9', '9', '9']},
-                        {scores: ['9', '9', '9', '9', '9', '9']},
-                    ]
-                },
-                {
-                    ends: [
-                        {scores: ['9', '9', '9', '9', '9', '9']},
-                        {scores: ['9', '9', '9', '9', '9', '9']},
-                    ]
-                },
-                {
-                    ends: [
-                        {scores: ['9', '9', '9', '9', '9', '9']},
-                        {scores: ['9', '9', '9', '9', '9', '9']},
-                    ]
-                },
-                {
-                    ends: [
-                        {scores: ['9', '9', '9', '9', '9', '9']},
-                        {scores: ['9', '9', '9', '9', '9', '9']},
-                    ]
-                },
-            ]
-        }]
-    }
 ];
 

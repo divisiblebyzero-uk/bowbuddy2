@@ -20,6 +20,14 @@ export class ScoreCardSelectorComponent implements OnInit {
   ngOnInit(): void {
     this.scorecards = SCORECARDS;
     this.rounds = ROUNDS.map(r => {return r.name});
+    if (this.scorecards.length < 2) {
+      const date = new Date();
+      for (let i = 0; i < 10; i++) {
+        const roundName = this.rounds[Math.floor(Math.random()*this.rounds.length)];
+        date.setDate(date.getDate() - Math.floor(Math.random()*7));
+        this.fds.createScoreCard(roundName, new Date(date));
+      }
+    }
   }
 
   public showScorecardDetails(scorecard: ScoreCard) {
