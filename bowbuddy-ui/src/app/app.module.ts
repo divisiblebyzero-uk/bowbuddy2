@@ -13,6 +13,9 @@ import { RoundHandicapChartComponent } from './components/round-handicap-chart/r
 import { ScoreCardSelectorComponent } from './components/score-card-selector/score-card-selector.component';
 import { ScoreCardDisplayComponent } from './components/score-card-display/score-card-display.component';
 import { ScorebadgeComponent } from './components/scorebadge/scorebadge.component';
+import { ScoreCardNewSummaryComponent } from './components/score-card-new-summary/score-card-new-summary.component';
+import { ScoreCardEditComponent } from './components/score-card-edit/score-card-edit.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,16 @@ import { ScorebadgeComponent } from './components/scorebadge/scorebadge.componen
     RoundHandicapChartComponent,
     ScoreCardSelectorComponent,
     ScoreCardDisplayComponent,
-    ScorebadgeComponent
+    ScorebadgeComponent,
+    ScoreCardNewSummaryComponent,
+    ScoreCardEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    ChartsModule
+    ChartsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

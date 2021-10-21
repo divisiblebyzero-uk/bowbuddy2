@@ -80,4 +80,8 @@ export class ScoreCardSelectorComponent implements OnInit {
     this.fds.createScoreCard(round);
     this.refreshScorecards();
   }
+
+  public newScorecard() {
+    this.router.navigate(['/scorecard-new']);
+  }
 }

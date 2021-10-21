@@ -1,28 +1,35 @@
-    <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-8 col-lg-6">
-                <!-- Section Heading-->
-                <div class="section_heading text-center">
-                    <h3>Timeline</h3>
-                    <div class="line"></div>
-                </div>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col">
+
+        </div>
+        <div class="col-10">
+            <!-- Section Heading-->
+            <div class="section_heading text-center">
+                <span class="display-4 text-center">Timeline</span>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <!-- Single Timeline Content-->
-                <div class="single-timeline-area" *ngFor="let date of scorecardDates">
-                    <div class="timeline-date">
-                        <p>{{getDate(date)|date: 'dd/MMM/yyyy'}}</p>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-lg-4" *ngFor="let scorecard of getScorecardsByDate(date)" (click)="showScorecardDetails(scorecard)">
-                            <div class="single-timeline-content d-flex">
-                                <div class="timeline-icon"></div>
-                                <div class="timeline-text">
-                                    <h6>{{scorecard.round}}</h6>
-                                    <p>{{scorecard.score}} ({{scorecard.handicap}})</p>
-                                </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary" (click)="newScorecard()">+</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <!-- Single Timeline Content-->
+            <div class="single-timeline-area" *ngFor="let date of scorecardDates">
+                <div class="timeline-date">
+                    <p>{{getDate(date)|date: 'dd/MMM/yyyy'}}</p>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4" *ngFor="let scorecard of getScorecardsByDate(date)"
+                        (click)="showScorecardDetails(scorecard)">
+                        <div class="single-timeline-content d-flex">
+                            <div class="timeline-icon"><img style="width: 100%" src="../../../assets/target-small.png">
+                            </div>
+                            <div class="timeline-text">
+
+                                <h6>{{scorecard.round}}</h6>
+                                <p>{{scorecard.score}} ({{scorecard.handicap}})</p>
                             </div>
                         </div>
                     </div>
@@ -30,9 +37,10 @@
             </div>
         </div>
     </div>
+</div>
 
 
-Add a fake round: 
+Add a fake round:
 <select #roundSelector (change)="addFakeRound(roundSelector.value)">
     <option selected>choose a round</option>
     <option *ngFor="let round of rounds" [value]="round">{{round}}</option>
