@@ -10,21 +10,18 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <!-- Timeline Area-->
-                <div class="apland-timeline-area">
-                    <!-- Single Timeline Content-->
-                    <div class="single-timeline-area" *ngFor="let date of scorecardDates">
-                        <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
-                            <p>{{getDate(date)|date: 'dd/MMM/yyyy'}}</p>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6 col-lg-4" *ngFor="let scorecard of scorecardsByDate.get(date)" (click)="showScorecardDetails(scorecard)">
-                                <div class="single-timeline-content d-flex" style="visibility: visible;">
-                                    <div class="timeline-icon"><i class="fa fa-address-card" aria-hidden="true"></i></div>
-                                    <div class="timeline-text">
-                                        <h6>{{scorecard.round}}</h6>
-                                        <p>{{scorecard.score}} ({{scorecard.handicap}})</p>
-                                    </div>
+                <!-- Single Timeline Content-->
+                <div class="single-timeline-area" *ngFor="let date of scorecardDates">
+                    <div class="timeline-date">
+                        <p>{{getDate(date)|date: 'dd/MMM/yyyy'}}</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-4" *ngFor="let scorecard of getScorecardsByDate(date)" (click)="showScorecardDetails(scorecard)">
+                            <div class="single-timeline-content d-flex">
+                                <div class="timeline-icon"></div>
+                                <div class="timeline-text">
+                                    <h6>{{scorecard.round}}</h6>
+                                    <p>{{scorecard.score}} ({{scorecard.handicap}})</p>
                                 </div>
                             </div>
                         </div>
@@ -33,15 +30,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
 
 
 Add a fake round: 

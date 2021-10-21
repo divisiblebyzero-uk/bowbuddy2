@@ -13,8 +13,8 @@ export class ScoreCardSelectorComponent implements OnInit {
 
   public scorecards!: ScoreCard[];
 
-  public scorecardsByDate: Map<string, ScoreCard[]> = new Map<string, ScoreCard[]>();
-  public scorecardDates!: IterableIterator<string>;
+  public scorecardsByDate: {date: string, scorecards: ScoreCard[]}[] = [];
+  public scorecardDates: string[] = [];
 
   public rounds!: string[];
 
@@ -31,33 +31,44 @@ export class ScoreCardSelectorComponent implements OnInit {
       const date = new Date();
       for (let i = 0; i < 10; i++) {
         const roundName = this.rounds[Math.floor(Math.random()*this.rounds.length)];
-        date.setDate(date.getDate() - Math.floor(Math.random()*7));
+        date.setDate(date.getDate() - Math.floor(Math.random()*2));
         this.fds.createScoreCard(roundName, new Date(date));
       }
     }
 
+    this.refreshScorecards();
+  }
 
-    this.scorecards = [...SCORECARDS].sort((a,b) => { return b.date.getDate() - a.date.getDate() });
+  public getScorecardsByDate(dateString: string): ScoreCard[] {
+    return this.scorecardsByDate.find(s => {return s.date == dateString})!?.scorecards;
+  }
+  
+  refreshScorecards() {
+    this.scorecards = [...SCORECARDS].sort((a,b) => { return b.date.valueOf() - a.date.valueOf() });
+
+    this.scorecardsByDate = [];
+    this.scorecardDates = [];
+
 
     this.scorecards.forEach(s => {
       const specimenDate = s.date.toDateString();
       let scorecardList: ScoreCard[];
-      if (!this.scorecardsByDate.has(specimenDate)) {
+      if (!this.scorecardsByDate.find(sbd => {return sbd.date == specimenDate})) {
         scorecardList = [];
-        this.scorecardsByDate.set(specimenDate, scorecardList);
+        const scorecardRecord = {date: specimenDate, scorecards: scorecardList};
+        this.scorecardsByDate.push(scorecardRecord);
+        this.scorecardDates.push(specimenDate);
       } else {
-        const potential = this.scorecardsByDate.get(specimenDate);
+        const potential = this.scorecardsByDate.find(sbd => {return sbd.date == specimenDate})?.scorecards;
         if (potential) {
           scorecardList = potential;
         } else {
           scorecardList = [];
         }
       }
-
       scorecardList.push(s);
     });
 
-    this.scorecardDates = this.scorecardsByDate.keys();
   }
 
   public showScorecardDetails(scorecard: ScoreCard) {
@@ -67,5 +78,6 @@ export class ScoreCardSelectorComponent implements OnInit {
   public addFakeRound(round: string) {
     console.log("Adding: " + round);
     this.fds.createScoreCard(round);
+    this.refreshScorecards();
   }
 }
