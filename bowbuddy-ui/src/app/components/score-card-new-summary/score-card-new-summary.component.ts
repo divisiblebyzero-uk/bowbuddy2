@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ROUNDS } from 'src/app/model/round';
+import { ScoreCard, SCORECARDS } from 'src/app/model/scorecard';
+import { IdService } from 'src/app/service/id-service.service';
 
-
-interface ScorecardSummary {
-  archer: string,
-  round: string,
-  gender: string,
-  bowType: string,
-  date: Date
-}
 
 @Component({
   selector: 'app-score-card-new-summary',
@@ -18,16 +13,18 @@ interface ScorecardSummary {
 })
 export class ScoreCardNewSummaryComponent implements OnInit {
 
-  constructor() { }
+  constructor(private calendar: NgbCalendar, private ids: IdService, private router: Router) { }
 
   public roundNames!: string[];
 
-  public scorecardSummary!: ScorecardSummary;
+  public scorecardSummary!: ScoreCard;
 
   public dateProxy: NgbDate|undefined;
 
   public onSubmit() {
-    console.log(this.scorecardSummary);
+    console.log("hello!");
+    SCORECARDS.push(this.scorecardSummary);
+    this.router.navigate(['/scorecard-edit', this.scorecardSummary.id]);
   }
 
   public updateDate() {
@@ -40,12 +37,20 @@ export class ScoreCardNewSummaryComponent implements OnInit {
     this.roundNames = ROUNDS.map(r => r.name);
 
     this.scorecardSummary = {
-      archer: '',
-      round: '',
-      gender: '',
-      bowType: '',
-      date: new Date()
+      id: this.ids.getNewId(),
+      archer: 'Joe Bloggs',
+      round: 'Portsmouth',
+      gender: 'Male',
+      bowType: 'Recurve',
+      date: new Date(),
+      distanceTotals: [],
+      ageGroup: 'Senior'
     };
+    this.dateProxy = this.calendar.getToday();
+    this.updateDate();
+
+    //remove this
+    this.onSubmit();
   }
 
 }

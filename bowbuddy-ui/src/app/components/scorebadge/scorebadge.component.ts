@@ -40,6 +40,8 @@ export class ScorebadgeComponent implements OnInit {
         return "white";
       case 'M':
         return "miss";
+      case '':
+        return "blank";
       default:
         return "unknown";
     }

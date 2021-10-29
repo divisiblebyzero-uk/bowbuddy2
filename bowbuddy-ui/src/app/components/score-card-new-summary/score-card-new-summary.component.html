@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center">
-            <span class="display-4">New Scorecard</span>
+            <span class="display-4">New Scorecard: Summary information</span>
         </div>
     </div>
     <div class="row">
@@ -11,58 +11,75 @@
     </div>
     <form (ngSubmit)="onSubmit()" #scorecardForm="ngForm">
         <div class="row">
-        <div class="col-lg-6 col-xs-12">
-            <div class="form-group">
-                <label for="round">Round</label>
-                <select class="form-control" id="round" required name="round" [(ngModel)]="scorecardSummary.round">
-                    <option *ngFor="let round of roundNames">{{round}}</option>
-                </select>
-            </div>
-            
-        </div>
-        <div class="col-lg-6 col-xs-12">
-            <div class="form-group">
-                <label for="round">Archer</label>
-                <input type="text" class="form-control" id="archer" required [(ngModel)]="scorecardSummary.archer" name="archer" #archer="ngModel">
-            </div>
-        </div>
-        <div class="col-lg-6 col-xs-12">
-            <div class="form-group">
-                <label for="round">Gender</label>
-                <select class="form-control" id="gender" required name="gender" #gender="ngModel" [(ngModel)]="scorecardSummary.gender">
-                    <option id="Female">Female</option>
-                    <option id="Male">Male</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-6 col-xs-12">
-            <div class="form-group">
-                <label for="round">Bow type</label>
-                <select class="form-control" id="bowType" required name="bowType" #gender="ngModel" [(ngModel)]="scorecardSummary.bowType">
-                    <option id="Recurve">Recurve</option>
-                    <option id="Compound">Compound</option>
-                    <option id="Longbow">Longbow</option>
-                    <option id="Barebow">Barebow</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-lg-6 col-xs-12">
-
-            <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd"
-                       name="dp" [(ngModel)]="dateProxy" ngbDatepicker #d="ngbDatepicker" (ngModelChange)="updateDate()">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+            <div class="col-lg-6 col-xs-12">
+                <div class="form-group">
+                    <label for="round">Round</label>
+                    <select class="form-control" id="round" required name="round" [(ngModel)]="scorecardSummary.round">
+                        <option *ngFor="let round of roundNames">{{round}}</option>
+                    </select>
                 </div>
-              </div>
-            Date
+
+            </div>
+            <div class="col-lg-6 col-xs-12">
+                <div class="form-group">
+                    <label for="archer">Archer</label>
+                    <input type="text" class="form-control" id="archer" required [(ngModel)]="scorecardSummary.archer"
+                        name="archer" #archer="ngModel">
+                </div>
+            </div>
+            <div class="col-lg-6 col-xs-12">
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" id="gender" required name="gender" #gender="ngModel"
+                        [(ngModel)]="scorecardSummary.gender">
+                        <option id="Female">Female</option>
+                        <option id="Male">Male</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xs-12">
+                <div class="form-group">
+                    <label for="bowType">Bow type</label>
+                    <select class="form-control" id="bowType" required name="bowType" #gender="ngModel"
+                        [(ngModel)]="scorecardSummary.bowType">
+                        <option id="Recurve">Recurve</option>
+                        <option id="Compound">Compound</option>
+                        <option id="Longbow">Longbow</option>
+                        <option id="Barebow">Barebow</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xs-12">
+                <div class="form-group">
+                    <label for="ageGroup">Age group</label>
+                    <select class="form-control" id="ageGroup" required name="ageGroup" #gender="ngModel"
+                        [(ngModel)]="scorecardSummary.ageGroup">
+                        <option id="Senior">Senior</option>
+                        <option id="Junior">Junior</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6 col-xs-12">
+
+                <div class="form-group">
+
+                    <label for="date">Date</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" required name="dp" [(ngModel)]="dateProxy"
+                            ngbDatepicker #d="ngbDatepicker" (ngModelChange)="updateDate()">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"
+                                type="button"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6 col-xs-12">
-            <button type="button" class="btn btn-success" [disabled]="!scorecardForm.form.valid">Submit</button>
+        <div class="row">
+            <div class="col-lg-6 col-xs-12">
+                <button type="button" class="btn btn-success" [disabled]="!scorecardForm.form.valid" (click)="onSubmit()">Next</button>
+            </div>
         </div>
-    </div>
-</form>
+    </form>
 
 </div>

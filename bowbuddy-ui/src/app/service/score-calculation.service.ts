@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ROUNDS } from '../model/round';
+import { Round, ROUNDS } from '../model/round';
 import { ScoreCard } from '../model/scorecard';
 import { HandicapCalculationService } from './handicap-calculation-service.service';
 
@@ -20,6 +20,24 @@ export class ScoreCalculationService {
     }
   }
 
+  public getAllowableScores(round: Round): string[] {
+    if (round.scoringType == "Imperial") {
+      return ['9', '7', '5', '3', '1', 'M'];
+    } else if (round.scoringType == "Metric") {
+      if (round.venue == "Indoor") {
+        return ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1', 'M'];
+      } else if (round.venue == "Outdoor") {
+        return ['X', '10', '9', '8', '7', '6', '5', '4', '3', '2', '1', 'M'];
+      } else {
+        console.log("Unknown venue: " + round.venue);
+        return ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1', 'M'];
+      }
+    } else {
+      console.log("Unknown scoring type: " + round.scoringType);
+      return ['9', '7', '5', '3', '1', 'M'];
+    }
+
+  }
 
   private summer = (previousValue: number, currentValue: number) => previousValue + currentValue;
   private count10s = (previousValue: number, currentValue: number) => previousValue + (currentValue==10?1:0);
