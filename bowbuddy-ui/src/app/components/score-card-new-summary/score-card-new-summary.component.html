@@ -4,11 +4,6 @@
             <span class="display-4">New Scorecard: Summary information</span>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            {{scorecardSummary|json}}
-        </div>
-    </div>
     <form (ngSubmit)="onSubmit()" #scorecardForm="ngForm">
         <div class="row">
             <div class="col-lg-6 col-xs-12">

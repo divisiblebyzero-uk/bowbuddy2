@@ -48,9 +48,6 @@ export class ScoreCardNewSummaryComponent implements OnInit {
     };
     this.dateProxy = this.calendar.getToday();
     this.updateDate();
-
-    //remove this
-    this.onSubmit();
   }
 
 }

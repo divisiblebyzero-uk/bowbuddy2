@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Distance, Round, ROUNDS } from 'src/app/model/round';
-import { End, ScoreCard, SCORECARDS } from 'src/app/model/scorecard';
+import { Dozen, End, ScoreCard, SCORECARDS } from 'src/app/model/scorecard';
 import { ScoreCalculationService } from 'src/app/service/score-calculation.service';
 
 @Component({
@@ -18,6 +18,7 @@ export class ScoreCardEditComponent implements OnInit {
   public showThinnerCard: boolean = false;
   public showXes: boolean = true;
   public round!: Round;
+  public scorecardComplete: boolean = false;
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -29,6 +30,7 @@ export class ScoreCardEditComponent implements OnInit {
         if (potentialRound) {
           this.round = potentialRound;
           this.allowableScores = this.scs.getAllowableScores(this.round);
+          this.showXes = this.round.venue == 'Outdoor' && this.round.scoringType == 'Metric';
         } else {
           console.error("Unknown round: " + this.scorecard.round);
           this.router.navigate(['/scorecards']);
@@ -37,10 +39,11 @@ export class ScoreCardEditComponent implements OnInit {
         this.recalculate();
       } else {
         console.error("Couldn't find scorecard: " + scorecardId);
-        //this.router.navigate(['/scorecards']);
-        this.router.navigate(['/scorecard-new']);
+        this.router.navigate(['/scorecards']);
+        //this.router.navigate(['/scorecard-new']);
       }
     });
+    this.calcWidth();
   }
 
   @HostListener('window:resize', ['$event']) onResize(event: any) {
@@ -52,7 +55,7 @@ export class ScoreCardEditComponent implements OnInit {
     this.showThinnerCard = this.innerWidth < 684;
   }
 
-  public recalculate() {
+  private addEndIfNecessary() {
     this.round.distances.forEach((d: Distance, i: number) => {
       if (!this.scorecard.distanceTotals[i]) {
         this.scorecard.distanceTotals.push({
@@ -61,23 +64,39 @@ export class ScoreCardEditComponent implements OnInit {
         })
       }
       const dozens = this.scorecard.distanceTotals[i].dozens;
-      if (dozens.length < d.arrows / 12) {
+      if (dozens.length == 0) {
         dozens.push({
           ends: []
         });
       }
       const lastDozen = dozens[dozens.length - 1];
       if (lastDozen.ends.length < 2) {
-        lastDozen.ends.push({
-          scores: ["", "", "", "", "", ""]
-        });
+        this.addEndAndSelect(lastDozen);
+      } else {
+        if (dozens.length < d.arrows / 12) {
+          const newDozen: Dozen = {ends: []};
+          this.addEndAndSelect(newDozen);
+          dozens.push(newDozen);
+        } else {
+          this.scorecardComplete = true;
+        }
       }
     });
 
-    this.showXes = this.round.venue == 'Outdoor' && this.round.scoringType == 'Metric';
+  }
 
+  private addEndAndSelect(dozen: Dozen) {
+    const newEnd: End = {
+      scores: ["", "", "", "", "", ""]
+    };
+    dozen.ends.push(newEnd);
+    this.selectedEnd = newEnd;
+    this.selectedIndex = 0;
+  }
 
-    
+  public recalculate() {
+    this.addEndIfNecessary();
+    this.scs.calculate(this.scorecard);
   }
 
   public selectedEnd: End|undefined;
@@ -88,6 +107,7 @@ export class ScoreCardEditComponent implements OnInit {
     console.log(index);
     this.selectedEnd = end;
     this.selectedIndex = index;
+    this.scorecardComplete = false;
   }
 
   public allowableScores!: string[];
