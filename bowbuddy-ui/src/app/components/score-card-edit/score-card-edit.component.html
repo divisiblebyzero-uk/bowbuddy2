@@ -25,7 +25,8 @@
                                 <span class="badge badge-primary">Score: {{dozen.score}}</span>&nbsp;
                                 <span class="badge badge-primary">Hits: {{dozen.hits}}</span>&nbsp;
                                 <span class="badge badge-primary">Golds: {{dozen.golds}}</span>&nbsp;
-                                <ng-container *ngIf="showXes"><span class="badge badge-primary">Xs: {{dozen.xes}}</span>&nbsp;</ng-container>
+                                <ng-container *ngIf="showXes"><span class="badge badge-primary">Xs:
+                                        {{dozen.xes}}</span>&nbsp;</ng-container>
                                 <span class="badge badge-primary">RT: {{dozen.runningTotal}}</span>
 
                             </th>
@@ -33,14 +34,18 @@
                         </tr>
                         <tr *ngIf="dozen.ends[0]">
                             <td nowrap>
-                                <app-scorebadge [ngClass]="selectedEnd==dozen.ends[0] && selectedIndex == i?'border':''" *ngFor="let score of dozen.ends[0].scores; let i = index;" [score]="score" (click)="scoreSelect(dozen.ends[0], i)">
+                                <app-scorebadge [ngClass]="selectedEnd==dozen.ends[0] && selectedIndex == i?'border':''"
+                                    *ngFor="let score of dozen.ends[0].scores; let i = index;" [score]="score"
+                                    (click)="scoreSelect(dozen.ends[0], i)">
                                 </app-scorebadge>
                             </td>
                             <td>{{dozen.ends[0].endTotal}}</td>
                         </tr>
                         <tr *ngIf="dozen.ends[1]">
                             <td nowrap>
-                                <app-scorebadge [ngClass]="selectedEnd==dozen.ends[1] && selectedIndex == i?'border':''" *ngFor="let score of dozen.ends[1].scores; let i = index;" [score]="score" (click)="scoreSelect(dozen.ends[1], i)">
+                                <app-scorebadge [ngClass]="selectedEnd==dozen.ends[1] && selectedIndex == i?'border':''"
+                                    *ngFor="let score of dozen.ends[1].scores; let i = index;" [score]="score"
+                                    (click)="scoreSelect(dozen.ends[1], i)">
                                 </app-scorebadge>
                             </td>
                             <td>{{dozen.ends[1].endTotal}}</td>
@@ -113,14 +118,18 @@
                 <tr *ngFor="let dozen of distanceTotal.dozens">
                     <td nowrap>
                         <ng-container *ngIf="dozen.ends[0]">
-                            <app-scorebadge [ngClass]="selectedEnd==dozen.ends[0] && selectedIndex == i?'border':''" *ngFor="let score of dozen.ends[0].scores; let i = index;" [score]="score" (click)="scoreSelect(dozen.ends[0], i)">
+                            <app-scorebadge [ngClass]="selectedEnd==dozen.ends[0] && selectedIndex == i?'border':''"
+                                *ngFor="let score of dozen.ends[0].scores; let i = index;" [score]="score"
+                                (click)="scoreSelect(dozen.ends[0], i)">
                             </app-scorebadge>
                         </ng-container>
                     </td>
                     <td>{{dozen.ends[0]?.endTotal}}</td>
                     <td nowrap>
                         <ng-container *ngIf="dozen.ends[1]">
-                            <app-scorebadge [ngClass]="selectedEnd==dozen.ends[1] && selectedIndex == i?'border':''" *ngFor="let score of dozen.ends[1].scores; let i = index;" [score]="score" (click)="scoreSelect(dozen.ends[1], i)">
+                            <app-scorebadge [ngClass]="selectedEnd==dozen.ends[1] && selectedIndex == i?'border':''"
+                                *ngFor="let score of dozen.ends[1].scores; let i = index;" [score]="score"
+                                (click)="scoreSelect(dozen.ends[1], i)">
                             </app-scorebadge>
                         </ng-container>
                     </td>
@@ -152,9 +161,9 @@
         </table>
     </div>
 </div>
-<div *ngIf="!scorecardComplete">
-    <app-scorebadge *ngFor="let score of allowableScores" [score]="score" (click)="postScore(score)"></app-scorebadge>
-</div>
-<div *ngIf="scorecardComplete">
-    Ta da!
+<div class="fixed-bottom pb-5 mb-3 text-center">
+    <div *ngIf="!scorecardComplete">
+        <app-scorebadge *ngFor="let score of allowableScores" [score]="score" (click)="postScore(score)">
+        </app-scorebadge>
+    </div>
 </div>
