@@ -1,5 +1,6 @@
-<div class="container-fluid">
-    <nav class="navbar fixed-bottom navbar-expand bg-dark navbar-dark" [ngClass]="{'fixed-bottom': isMobilePortrait}">
+
+<div class="container-fluid px-0">
+    <nav class="navbar navbar-expand bg-dark navbar-dark" [ngClass]="{'fixed-bottom': isMobilePortrait}">
         <a class="navbar-brand" routerLink="">Bow Buddy</a>
 
         <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
@@ -17,7 +18,15 @@
             </ul>
         </div>
     </nav>
-    <div class="pb-5 mb-5">
+    <div class="body-content" [ngClass]="{'padded-bottom': isMobilePortrait, 'padded-top': !isMobilePortrait}">
         <router-outlet></router-outlet>
     </div>
 </div>
+
+
+<!--
+    <div class="container-fluid body-content">
+        <router-outlet></router-outlet>
+    </div>
+<div class="footerfix"></div>
+-->

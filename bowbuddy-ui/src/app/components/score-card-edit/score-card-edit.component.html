@@ -1,169 +1,181 @@
-<div class="container-fluid" *ngIf="showThinnerCard">
-    <div class="row pb-5">
-        <div class="table-responsive-lg">
-            <table class="table table-sm table-bordered">
-                <tr>
-                    <th scope="col" colspan="2">
-                        <div class="row">
-                            <div class="col text-left">{{scorecard.archer}}</div>
-                            <div class="col text-right">{{scorecard.bowType}}</div>
-                        </div>
-                    </th>
-                </tr>
-                <tr>
-                    <th scope="col" colspan="2">
-                        <div class="row">
-                            <div class="col text-left">{{scorecard.round}}</div>
-                            <div class="col text-right">{{scorecard.date | date:'dd/MM/yyyy'}}</div>
-                        </div>
-                    </th>
-                </tr>
-                <ng-container *ngFor="let distanceTotal of scorecard.distanceTotals">
-                    <ng-container *ngFor="let dozen of distanceTotal.dozens">
-                        <tr>
-                            <th class="table-primary" scope="col">
-                                <span class="badge badge-primary">Score: {{dozen.score}}</span>&nbsp;
-                                <span class="badge badge-primary">Hits: {{dozen.hits}}</span>&nbsp;
-                                <span class="badge badge-primary">Golds: {{dozen.golds}}</span>&nbsp;
-                                <ng-container *ngIf="showXes"><span class="badge badge-primary">Xs:
-                                        {{dozen.xes}}</span>&nbsp;</ng-container>
-                                <span class="badge badge-primary">RT: {{dozen.runningTotal}}</span>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="container-fluid" *ngIf="showThinnerCard">
+                <div class="row pb-5">
+                    <div class="table-responsive-lg">
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <th scope="col" colspan="2">
+                                    <div class="row">
+                                        <div class="col text-left">{{scorecard.archer}}</div>
+                                        <div class="col text-right">{{scorecard.bowType}}</div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th scope="col" colspan="2">
+                                    <div class="row">
+                                        <div class="col text-left">{{scorecard.round}}</div>
+                                        <div class="col text-right">{{scorecard.date | date:'dd/MM/yyyy'}}</div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <ng-container *ngFor="let distanceTotal of scorecard.distanceTotals">
+                                <ng-container *ngFor="let dozen of distanceTotal.dozens">
+                                    <tr>
+                                        <th class="table-primary" scope="col">
+                                            <span class="badge badge-primary">Score: {{dozen.score}}</span>&nbsp;
+                                            <span class="badge badge-primary">Hits: {{dozen.hits}}</span>&nbsp;
+                                            <span class="badge badge-primary">Golds: {{dozen.golds}}</span>&nbsp;
+                                            <ng-container *ngIf="showXes"><span class="badge badge-primary">Xs:
+                                                    {{dozen.xes}}</span>&nbsp;</ng-container>
+                                            <span class="badge badge-primary">RT: {{dozen.runningTotal}}</span>
 
-                            </th>
-                            <th class="table-primary" scope="col">ET</th>
-                        </tr>
-                        <tr *ngIf="dozen.ends[0]">
-                            <td nowrap>
-                                <app-scorebadge [ngClass]="selectedEnd==dozen.ends[0] && selectedIndex == i?'border':''"
-                                    *ngFor="let score of dozen.ends[0].scores; let i = index;" [score]="score"
-                                    (click)="scoreSelect(dozen.ends[0], i)">
-                                </app-scorebadge>
-                            </td>
-                            <td>{{dozen.ends[0].endTotal}}</td>
-                        </tr>
-                        <tr *ngIf="dozen.ends[1]">
-                            <td nowrap>
-                                <app-scorebadge [ngClass]="selectedEnd==dozen.ends[1] && selectedIndex == i?'border':''"
-                                    *ngFor="let score of dozen.ends[1].scores; let i = index;" [score]="score"
-                                    (click)="scoreSelect(dozen.ends[1], i)">
-                                </app-scorebadge>
-                            </td>
-                            <td>{{dozen.ends[1].endTotal}}</td>
+                                        </th>
+                                        <th class="table-primary" scope="col">ET</th>
+                                    </tr>
+                                    <tr *ngIf="dozen.ends[0]">
+                                        <td nowrap>
+                                            <app-scorebadge
+                                                [ngClass]="selectedEnd==dozen.ends[0] && selectedIndex == i?'border':''"
+                                                *ngFor="let score of dozen.ends[0].scores; let i = index;"
+                                                [score]="score" (click)="scoreSelect(dozen.ends[0], i)">
+                                            </app-scorebadge>
+                                        </td>
+                                        <td>{{dozen.ends[0].endTotal}}</td>
+                                    </tr>
+                                    <tr *ngIf="dozen.ends[1]">
+                                        <td nowrap>
+                                            <app-scorebadge
+                                                [ngClass]="selectedEnd==dozen.ends[1] && selectedIndex == i?'border':''"
+                                                *ngFor="let score of dozen.ends[1].scores; let i = index;"
+                                                [score]="score" (click)="scoreSelect(dozen.ends[1], i)">
+                                            </app-scorebadge>
+                                        </td>
+                                        <td>{{dozen.ends[1].endTotal}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="font-size: xx-small">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                                <tr>
+                                    <th class="table-warning" scope="row" colspan="1">
+                                        <span class="badge badge-warning">Score: {{distanceTotal.score}}</span>&nbsp;
+                                        <span class="badge badge-warning">Hits: {{distanceTotal.hits}}</span>&nbsp;
+                                        <span class="badge badge-warning">Golds: {{distanceTotal.golds}}</span>&nbsp;
+                                        <span *ngIf="showXes" class="badge badge-warning">Xs:
+                                            {{distanceTotal.xes}}</span>&nbsp;
+                                    </th>
+                                    <th class="table-warning">
+                                        {{distanceTotal.distance.displayString}}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="font-size: xx-small">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </ng-container>
+                            <tr>
+                                <th class="table-success" scope="row" colspan="1">
+                                    <span class="badge badge-success">Score: {{scorecard.score}}</span>&nbsp;
+                                    <span class="badge badge-success">Hits: {{scorecard.hits}}</span>&nbsp;
+                                    <span class="badge badge-success">Golds: {{scorecard.golds}}</span>&nbsp;
+                                    <span *ngIf="showXes" class="badge badge-success">Xs: {{scorecard.xes}}</span>&nbsp;
+                                </th>
+                                <th class="table-success">
+                                    Round
+                                </th>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="container-fluid" *ngIf="!showThinnerCard">
+
+                <div class="table-responsive">
+                    <table class="table table-sm table-bordered">
+                        <tr>
+                            <th scope="col" colspan="4">Archer: {{scorecard.archer}}</th>
+                            <th scope="col" colspan="5">Date: {{scorecard.date | date:'dd/MM/yyyy'}}</th>
                         </tr>
                         <tr>
-                            <td colspan="2" style="font-size: xx-small">
-                                &nbsp;
-                            </td>
+                            <th scope="col" colspan="4">Round: {{scorecard.round}}</th>
+                            <th scope="col" colspan="5">Bow: {{scorecard.bowType}}</th>
                         </tr>
-                    </ng-container>
-                    <tr>
-                        <th class="table-warning" scope="row" colspan="1">
-                            <span class="badge badge-warning">Score: {{distanceTotal.score}}</span>&nbsp;
-                            <span class="badge badge-warning">Hits: {{distanceTotal.hits}}</span>&nbsp;
-                            <span class="badge badge-warning">Golds: {{distanceTotal.golds}}</span>&nbsp;
-                            <span *ngIf="showXes" class="badge badge-warning">Xs: {{distanceTotal.xes}}</span>&nbsp;
-                        </th>
-                        <th class="table-warning">
-                            {{distanceTotal.distance.displayString}}
-                        </th>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="font-size: xx-small">
-                            &nbsp;
-                        </td>
-                    </tr>
-                </ng-container>
-                <tr>
-                    <th class="table-success" scope="row" colspan="1">
-                        <span class="badge badge-success">Score: {{scorecard.score}}</span>&nbsp;
-                        <span class="badge badge-success">Hits: {{scorecard.hits}}</span>&nbsp;
-                        <span class="badge badge-success">Golds: {{scorecard.golds}}</span>&nbsp;
-                        <span *ngIf="showXes" class="badge badge-success">Xs: {{scorecard.xes}}</span>&nbsp;
-                    </th>
-                    <th class="table-success">
-                        Round
-                    </th>
-                </tr>
-
-            </table>
+                        <tr>
+                            <th class="table-secondary" scope="col">&nbsp;</th>
+                            <th scope="col">ET</th>
+                            <th class="table-secondary" scope="col">&nbsp;</th>
+                            <th scope="col">ET</th>
+                            <th scope="col">H</th>
+                            <th scope="col">S</th>
+                            <th scope="col">G</th>
+                            <th *ngIf="showXes" scope="col">Xs</th>
+                            <th scope="col">RT</th>
+                        </tr>
+                        <ng-container *ngFor="let distanceTotal of scorecard.distanceTotals">
+                            <tr *ngFor="let dozen of distanceTotal.dozens">
+                                <td nowrap>
+                                    <ng-container *ngIf="dozen.ends[0]">
+                                        <app-scorebadge
+                                            [ngClass]="selectedEnd==dozen.ends[0] && selectedIndex == i?'border':''"
+                                            *ngFor="let score of dozen.ends[0].scores; let i = index;" [score]="score"
+                                            (click)="scoreSelect(dozen.ends[0], i)">
+                                        </app-scorebadge>
+                                    </ng-container>
+                                </td>
+                                <td>{{dozen.ends[0]?.endTotal}}</td>
+                                <td nowrap>
+                                    <ng-container *ngIf="dozen.ends[1]">
+                                        <app-scorebadge
+                                            [ngClass]="selectedEnd==dozen.ends[1] && selectedIndex == i?'border':''"
+                                            *ngFor="let score of dozen.ends[1].scores; let i = index;" [score]="score"
+                                            (click)="scoreSelect(dozen.ends[1], i)">
+                                        </app-scorebadge>
+                                    </ng-container>
+                                </td>
+                                <td>{{dozen.ends[1]?.endTotal}}</td>
+                                <td>{{dozen.hits}}</td>
+                                <td>{{dozen.score}}</td>
+                                <td>{{dozen.golds}}</td>
+                                <td *ngIf="showXes">{{dozen.xes}}</td>
+                                <td>{{dozen.runningTotal}}</td>
+                            </tr>
+                            <tr>
+                                <th class="table-warning" scope="row" colspan="4">Distance Totals for {{
+                                    distanceTotal.distance.displayString }}</th>
+                                <td class="table-warning">{{distanceTotal.hits}}</td>
+                                <td class="table-warning">{{distanceTotal.score}}</td>
+                                <td class="table-warning">{{distanceTotal.golds}}</td>
+                                <td *ngIf="showXes" class="table-warning">{{distanceTotal.xes}}</td>
+                                <td class="table-secondary">&nbsp;</td>
+                            </tr>
+                        </ng-container>
+                        <tr>
+                            <th scope="row" colspan="4">Round Totals</th>
+                            <td class="table-primary">{{scorecard.hits}}</td>
+                            <td class="table-primary">{{scorecard.score}}</td>
+                            <td class="table-primary">{{scorecard.golds}}</td>
+                            <td *ngIf="showXes" class="table-primary">{{scorecard.xes}}</td>
+                            <td class="table-secondary">&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!scorecardComplete" class="row">
+        <div class="col fixed-bottom text-center" [ngClass]="{'scorebuttons-mobile': showThinnerCard}">
+            <app-scorebadge *ngFor="let score of allowableScores" [score]="score" (click)="postScore(score)">
+            </app-scorebadge>
         </div>
     </div>
 </div>
 
-
-<div class="container-fluid mx-0 px-0" *ngIf="!showThinnerCard">
-
-    <div class="table-responsive">
-        <table class="table table-sm table-bordered">
-            <tr>
-                <th scope="col" colspan="4">Archer: {{scorecard.archer}}</th>
-                <th scope="col" colspan="5">Date: {{scorecard.date | date:'dd/MM/yyyy'}}</th>
-            </tr>
-            <tr>
-                <th scope="col" colspan="4">Round: {{scorecard.round}}</th>
-                <th scope="col" colspan="5">Bow: {{scorecard.bowType}}</th>
-            </tr>
-            <tr>
-                <th class="table-secondary" scope="col">&nbsp;</th>
-                <th scope="col">ET</th>
-                <th class="table-secondary" scope="col">&nbsp;</th>
-                <th scope="col">ET</th>
-                <th scope="col">H</th>
-                <th scope="col">S</th>
-                <th scope="col">G</th>
-                <th *ngIf="showXes" scope="col">Xs</th>
-                <th scope="col">RT</th>
-            </tr>
-            <ng-container *ngFor="let distanceTotal of scorecard.distanceTotals">
-                <tr *ngFor="let dozen of distanceTotal.dozens">
-                    <td nowrap>
-                        <ng-container *ngIf="dozen.ends[0]">
-                            <app-scorebadge [ngClass]="selectedEnd==dozen.ends[0] && selectedIndex == i?'border':''"
-                                *ngFor="let score of dozen.ends[0].scores; let i = index;" [score]="score"
-                                (click)="scoreSelect(dozen.ends[0], i)">
-                            </app-scorebadge>
-                        </ng-container>
-                    </td>
-                    <td>{{dozen.ends[0]?.endTotal}}</td>
-                    <td nowrap>
-                        <ng-container *ngIf="dozen.ends[1]">
-                            <app-scorebadge [ngClass]="selectedEnd==dozen.ends[1] && selectedIndex == i?'border':''"
-                                *ngFor="let score of dozen.ends[1].scores; let i = index;" [score]="score"
-                                (click)="scoreSelect(dozen.ends[1], i)">
-                            </app-scorebadge>
-                        </ng-container>
-                    </td>
-                    <td>{{dozen.ends[1]?.endTotal}}</td>
-                    <td>{{dozen.hits}}</td>
-                    <td>{{dozen.score}}</td>
-                    <td>{{dozen.golds}}</td>
-                    <td *ngIf="showXes">{{dozen.xes}}</td>
-                    <td>{{dozen.runningTotal}}</td>
-                </tr>
-                <tr>
-                    <th class="table-warning" scope="row" colspan="4">Distance Totals for {{
-                        distanceTotal.distance.displayString }}</th>
-                    <td class="table-warning">{{distanceTotal.hits}}</td>
-                    <td class="table-warning">{{distanceTotal.score}}</td>
-                    <td class="table-warning">{{distanceTotal.golds}}</td>
-                    <td *ngIf="showXes" class="table-warning">{{distanceTotal.xes}}</td>
-                    <td class="table-secondary">&nbsp;</td>
-                </tr>
-            </ng-container>
-            <tr>
-                <th scope="row" colspan="4">Round Totals</th>
-                <td class="table-primary">{{scorecard.hits}}</td>
-                <td class="table-primary">{{scorecard.score}}</td>
-                <td class="table-primary">{{scorecard.golds}}</td>
-                <td *ngIf="showXes" class="table-primary">{{scorecard.xes}}</td>
-                <td class="table-secondary">&nbsp;</td>
-            </tr>
-        </table>
-    </div>
-</div>
-<div class="fixed-bottom pb-5 mb-3 text-center">
-    <div *ngIf="!scorecardComplete">
-        <app-scorebadge *ngFor="let score of allowableScores" [score]="score" (click)="postScore(score)">
-        </app-scorebadge>
-    </div>
-</div>

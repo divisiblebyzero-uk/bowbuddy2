@@ -1,0 +1,22 @@
+html {
+    height: 100%;
+}
+html body {
+    height: 100%;
+    overflow: hidden;
+}
+.body-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    overflow-y: auto;
+}
+.padded-bottom {
+    bottom: 55px;
+}
+
+.padded-top {
+    top: 55px;
+}
