@@ -1,0 +1,3 @@
+name: dearc-aws
+runtime: nodejs
+description: Dearc AWS backend
